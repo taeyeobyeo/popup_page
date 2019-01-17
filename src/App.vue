@@ -2,13 +2,25 @@
   <div id="app">
     <router-link to="/">HelloWorld</router-link>
     <router-link to="/mirror">Mirror</router-link>
+    <button v-on:click="onoff()">ON/OFF</button>
     <router-view/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods:{
+    onoff: function(){
+      console.log("clicked");
+      chrome.runtime.sendMessage(
+        {data:"trigger"},
+        (response)=>{
+            console.log(response);
+        }
+      );
+    }
+  }
 }
 </script>
 
