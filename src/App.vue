@@ -1,26 +1,19 @@
 <template>
   <div id="app">
-    <router-link to="/">HelloWorld</router-link>
-    <router-link to="/mirror">Mirror</router-link>
-    <button v-on:click="onoff()">ON/OFF</button>
+    <navBar></navBar>
     <router-view/>
   </div>
 </template>
 
 <script>
+import navBar from './components/NavBar';
 export default {
   name: 'App',
-  methods:{
-    onoff: function(){
-      console.log("clicked");
-      chrome.runtime.sendMessage(
-        {data:"trigger"},
-        (response)=>{
-            console.log(response);
-        }
-      );
-    }
-  }
+  components:{
+    navBar
+  },
+  data:{
+  },
 }
 </script>
 

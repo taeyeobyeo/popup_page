@@ -2,22 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import NavBar from './components/NavBar'
 import router from './router'
+import { sync } from 'vuex-router-sync'
+import store from './store'
+import FirebaseAuthPlugin from './FirebaseAuthPlugin'
 
-// import firebase from 'firebase'
-// var config = {
-//   apiKey: "AIzaSyAeizSulUyLs6RoVa82vOW99hw0ldFJqX8",
-//   authDomain: "capstone-67677.firebaseapp.com",
-//   databaseURL: "https://capstone-67677.firebaseio.com",
-//   projectId: "capstone-67677",
-//   storageBucket: "capstone-67677.appspot.com",
-//   messagingSenderId: "719697691522"
-// };
-// firebase.initializeApp(config);
+Vue.use(FirebaseAuthPlugin)
+
+sync(store, router)
 
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  store,
+  components: { App, NavBar },
   template: '<App/>'
 })
+
+export { app, router, store}

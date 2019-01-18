@@ -177,27 +177,4 @@ export function drawOffsetVectors(
   scale = 1,
   ctx
 ) {
-  const offsetPoints = posenet.singlePose.getOffsetPoints(
-    heatMapValues,
-    outputStride,
-    offsets
-  );
-
-  const heatmapData = heatMapValues.buffer().values;
-  const offsetPointsData = offsetPoints.buffer().values;
-
-  for (let i = 0; i < heatmapData.length; i += 2) {
-    const heatmapY = heatmapData[i] * outputStride;
-    const heatmapX = heatmapData[i + 1] * outputStride;
-    const offsetPointY = offsetPointsData[i];
-    const offsetPointX = offsetPointsData[i + 1];
-
-    drawSegment(
-      [heatmapY, heatmapX],
-      [offsetPointY, offsetPointX],
-      color,
-      scale,
-      ctx
-    );
-  }
 }
