@@ -13,6 +13,17 @@ export default {
     name: 'navBar',
     computed: {
         ...mapState(['user'])
+    },
+    methods:{
+        onoff: function(){
+            console.log("clicked");
+            chrome.runtime.sendMessage(
+                {data:"trigger"},
+                (response)=>{
+                    console.log(response);
+                }
+            );
+        }
     }
 }
 </script>
